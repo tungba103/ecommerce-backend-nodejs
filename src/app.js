@@ -11,13 +11,16 @@ app.use(helmet());
 app.use(compression());
 
 // Init db
+require('./dbs/init.mongodb');
+// const { checkOverload } = require('./helpers/check.connection');
+// checkOverload();
 
 // Init routes
 app.get('', (req, res, next) => {
   const str = 'Hello World';
   return res.status(200).json({
     message: 'Welcome to Backend',
-    metadata: str.repeat(100000),
+    metadata: str.repeat(1000),
   });
 });
 
